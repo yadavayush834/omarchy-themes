@@ -1,0 +1,143 @@
+{
+  "name": "minimal-drift",
+  "layer": "top",
+  "position": "top",
+  "mode": "dock",
+  "exclusive": true,
+  "passthrough": false,
+  "fixed-center": true,
+  "reload_style_on_change": true,
+  "height": 30,
+  "spacing": 0,
+  "margin-top": 8,
+  "margin-left": 10,
+  "margin-right": 10,
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "custom/screenrecording-indicator",
+    "clock",
+    "custom/idle-indicator",
+    "custom/notification-silencing-indicator"
+  ],
+  "modules-right": [
+    "custom/update",
+    "network",
+    "pulseaudio",
+    "battery",
+    "custom/power"
+  ],
+  "hyprland/workspaces": {
+    "active-only": false,
+    "all-outputs": false,
+    "disable-scroll": false,
+    "sort-by-number": true,
+    "on-click": "activate",
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10",
+      "default": "·",
+      "urgent": "!"
+    },
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": []
+    }
+  },
+  "clock": {
+    "interval": 5,
+    "format": "{:%H:%M}",
+    "format-alt": "{:%a %d %b}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "on-click": "omarchy-shell shell toggle omarchy.clock",
+    "calendar": {
+      "mode": "month",
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<b>{}</b>",
+        "days": "{}",
+        "weeks": "W{}",
+        "weekdays": "<b>{}</b>",
+        "today": "<b><u>{}</u></b>"
+      }
+    }
+  },
+  "custom/screenrecording-indicator": {
+    "on-click": "omarchy capture screenrecording",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/screen-recording.sh",
+    "signal": 8,
+    "return-type": "json"
+  },
+  "custom/idle-indicator": {
+    "on-click": "omarchy toggle idle",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/idle.sh",
+    "signal": 9,
+    "return-type": "json"
+  },
+  "custom/notification-silencing-indicator": {
+    "on-click": "omarchy toggle notification silencing",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/notification-silencing.sh",
+    "signal": 10,
+    "return-type": "json"
+  },
+  "custom/update": {
+    "format": "upd",
+    "exec-if": "omarchy-update-available",
+    "exec": "printf 'upd'",
+    "interval": 3600,
+    "signal": 7,
+    "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
+    "tooltip-format": "system update available"
+  },
+  "network": {
+    "interval": 10,
+    "format-wifi": "wifi {signalStrength}%",
+    "format-ethernet": "eth",
+    "format-linked": "link",
+    "format-disconnected": "offline",
+    "tooltip-format-wifi": "down {bandwidthDownBytes} · up {bandwidthUpBytes}",
+    "tooltip-format-ethernet": "wired · down {bandwidthDownBytes} · up {bandwidthUpBytes}",
+    "tooltip-format-disconnected": "network disconnected",
+    "on-click": "omarchy-shell shell toggle omarchy.network"
+  },
+  "pulseaudio": {
+    "scroll-step": 5,
+    "format": "vol {volume}%",
+    "format-muted": "muted",
+    "tooltip-format": "volume {volume}%",
+    "on-click": "omarchy-shell shell toggle omarchy.audio",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+  },
+  "battery": {
+    "interval": 30,
+    "states": {
+      "warning": 25,
+      "critical": 12
+    },
+    "format": "{capacity}%",
+    "format-charging": "chg {capacity}%",
+    "format-plugged": "ac {capacity}%",
+    "format-full": "full",
+    "tooltip-format": "{timeTo} · {power:.1f}W",
+    "on-click": "omarchy-shell shell toggle omarchy.power",
+    "on-click-right": "omarchy-shell omarchy.power togglePercentage"
+  },
+  "custom/power": {
+    "format": "⏻",
+    "on-click": "omarchy-shell shell toggle omarchy.power",
+    "tooltip-format": "power"
+  }
+}

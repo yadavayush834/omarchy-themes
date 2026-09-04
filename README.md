@@ -1,7 +1,22 @@
 # Omarchy Themes
 
-A collection of fan-made themes for [Omarchy](https://omarchy.org/), beginning
-with a complete *Mr. Robot* desktop treatment for Omarchy 4.
+A collection of fan-made themes for [Omarchy](https://omarchy.org/): a
+complete *Mr. Robot* desktop treatment and an original minimalist theme,
+*Minimal Drift*, both for Omarchy 4.
+
+## Minimal Drift
+
+![Minimal Drift theme running on Omarchy](screenshots/minimal-drift-desktop.png)
+
+*Live desktop preview showing the floating-pill Waybar, bone active
+workspace, and warm-monochrome terminal palette.*
+
+Warm grays, one bone accent, one sand warning. Slim floating pill bar with
+hairline borders and strict module density (numbered workspaces, clock,
+network, volume, battery, power — nothing else), six generated gradient
+wallpapers including near-black variants, and full native-shell styling.
+Install with `./install.sh minimal-drift` (see below);
+details in [minimal_drift/](minimal_drift/).
 
 ## Mr. Robot
 
@@ -17,14 +32,22 @@ a custom telemetry-heavy Waybar.
 ### Quick installation
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/yadavayush834/omarchy-themes/main/install.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/yadavayush834/omarchy-themes/main/install.sh) minimal-drift
+```
+
+Or pick a theme explicitly (defaults to `mr-robot` when omitted):
+
+```bash
+./install.sh minimal-drift
+./install.sh mr-robot
 ```
 
 The installer:
 
 - downloads this repository when needed;
-- backs up an existing `mr-robot` theme instead of deleting it;
-- installs `mr_robot/` as `~/.config/omarchy/themes/mr-robot`;
+- validates the theme name against a fixed list (`mr-robot`, `minimal-drift`);
+- backs up an existing theme instead of deleting it;
+- installs the theme folder as `~/.config/omarchy/themes/<slug>`;
 - applies the theme with Omarchy.
 
 If you prefer to inspect everything first:
@@ -32,7 +55,7 @@ If you prefer to inspect everything first:
 ```bash
 git clone --depth 1 https://github.com/yadavayush834/omarchy-themes.git
 cd omarchy-themes
-./install.sh
+./install.sh minimal-drift
 ```
 
 Cycle wallpapers after installation with:
@@ -54,7 +77,15 @@ still receive the complete native-shell styling and color palette.
 omarchy-themes/
 ├── install.sh
 ├── README.md
-└── mr_robot/
+├── screenshots/
+│   ├── minimal-drift-desktop.png
+│   └── mr-robot-desktop.png
+├── minimal_drift/        # slug: minimal-drift
+│   ├── backgrounds/
+│   ├── colors.toml
+│   ├── shell.*.toml
+│   └── waybar/
+└── mr_robot/             # slug: mr-robot
     ├── backgrounds/
     ├── colors.toml
     ├── shell.*.toml
@@ -66,4 +97,5 @@ omarchy-themes/
 This is an unofficial fan project and is not affiliated with or endorsed by
 Omarchy or the creators, producers, broadcasters, or rights holders of
 *Mr. Robot*. Supplied images remain the property of their respective copyright
-holders.
+holders. *Minimal Drift* is an original creation; its wallpapers were
+generated for this theme and need no attribution.

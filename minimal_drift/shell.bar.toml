@@ -1,0 +1,12 @@
+[bar]
+background = "#0F0F0E"
+background-alpha = 0.94
+text = "#E2DED4"
+active = "#E8E4DA"
+scale-with-font = true
+size-horizontal = 28
+size-vertical = 30
+icon-slot = 28
+icon-canvas = 16
+icon-font = 13
+status-slot = 22

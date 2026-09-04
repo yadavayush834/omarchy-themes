@@ -1,0 +1,40 @@
+# Minimal Drift — quiet paper in a dark room.
+# Warm monochrome dark. One bone accent, one sand warning. Muted clay for errors.
+mode = "dark"
+
+accent = "#E8E4DA"
+cursor = "#E8E4DA"
+selection = "#2A2A28"
+muted = "#7E7B74"
+
+background = "#141413"
+dark_background = "#0F0F0E"
+darker_background = "#090908"
+lighter_background = "#1F1F1D"
+
+foreground = "#E2DED4"
+dark_foreground = "#8F8B82"
+light_foreground = "#CFCABB"
+bright_foreground = "#F6F3EC"
+
+selection_foreground = "#F6F3EC"
+selection_background = "#2A2A28"
+
+hyprland_active_border = "#8F8B82 #333331 45deg"
+hyprland_inactive_border = "rgba(333331aa)"
+
+red = "#C47B72"
+yellow = "#C9A86A"
+orange = "#C48A5E"
+green = "#A8B5A0"
+cyan = "#8FA5A3"
+blue = "#8EA0B5"
+magenta = "#AE9AA8"
+brown = "#8A7A6B"
+
+bright_red = "#D99A90"
+bright_yellow = "#DDBD85"
+bright_green = "#BCC8B4"
+bright_cyan = "#A9BFBD"
+bright_blue = "#A6B8CC"
+bright_magenta = "#C4B3BE"

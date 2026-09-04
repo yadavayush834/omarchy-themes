@@ -3,9 +3,30 @@
 set -Eeuo pipefail
 
 readonly repo_url="https://github.com/yadavayush834/omarchy-themes.git"
-readonly theme_directory="mr_robot"
-readonly theme_slug="mr-robot"
 readonly themes_root="${HOME}/.config/omarchy/themes"
+
+# Explicit safe mapping from public slug to repository folder.
+# Validate the requested name against this list; never build paths
+# from unchecked user input.
+theme_slug="${1:-mr-robot}"
+case "${theme_slug}" in
+  mr-robot)
+    theme_directory="mr_robot"
+    theme_label="Mr. Robot"
+    theme_greeting="Mr. Robot is installed and active. Hello, friend."
+    ;;
+  minimal-drift)
+    theme_directory="minimal_drift"
+    theme_label="Minimal Drift"
+    theme_greeting="Minimal Drift is installed and active. Breathe easy."
+    ;;
+  *)
+    printf 'Error: unknown theme "%s". Available themes: mr-robot, minimal-drift.\n' "${theme_slug}" >&2
+    printf 'Usage: ./install.sh [mr-robot|minimal-drift]\n' >&2
+    exit 1
+    ;;
+esac
+
 readonly target_directory="${themes_root}/${theme_slug}"
 
 temporary_directory=""
@@ -37,7 +58,7 @@ if [[ ! -d "${source_directory}" ]]; then
 fi
 
 if [[ ! -f "${source_directory}/colors.toml" ]]; then
-  printf 'Error: the Mr. Robot theme files could not be found.\n' >&2
+  printf 'Error: the %s theme files could not be found.\n' "${theme_label}" >&2
   exit 1
 fi
 
@@ -52,4 +73,4 @@ fi
 cp -a -- "${source_directory}" "${target_directory}"
 omarchy theme set "${theme_slug}"
 
-printf '\nMr. Robot is installed and active. Hello, friend.\n'
+printf '\n%s\n' "${theme_greeting}"

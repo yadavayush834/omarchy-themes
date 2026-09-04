@@ -1,0 +1,206 @@
+@import "../../.local/state/omarchy/current/theme/waybar.css";
+
+@define-color drift_bg #0F0F0E;
+@define-color drift_surface #141413;
+@define-color drift_bone #E8E4DA;
+@define-color drift_fg #E2DED4;
+@define-color drift_soft #CFCABB;
+@define-color drift_muted #7E7B74;
+@define-color drift_dim #8F8B82;
+@define-color drift_sel #2A2A28;
+@define-color drift_warn #C9A86A;
+@define-color drift_err #C47B72;
+@define-color drift_err_bright #D99A90;
+
+* {
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 11px;
+  font-weight: 500;
+}
+
+window#waybar {
+  background: transparent;
+  color: @drift_fg;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+  background-color: alpha(@drift_bg, 0.85);
+  border: 1px solid alpha(@drift_bone, 0.09);
+  border-radius: 8px;
+}
+
+#workspaces,
+#clock,
+#custom-update,
+#network,
+#pulseaudio,
+#battery,
+#custom-power {
+  padding: 0 7px;
+  min-height: 22px;
+}
+
+#workspaces {
+  padding: 0 3px;
+  background: transparent;
+}
+
+#workspaces button {
+  all: initial;
+  min-width: 20px;
+  min-height: 20px;
+  margin: 2px 1px;
+  padding: 0 5px;
+  border-radius: 5px;
+  color: alpha(@drift_muted, 0.7);
+  background: transparent;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 11px;
+  font-weight: 500;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+#workspaces button.empty {
+  color: alpha(@drift_muted, 0.5);
+}
+
+#workspaces button.visible {
+  color: @drift_dim;
+  background: alpha(@drift_bone, 0.06);
+}
+
+#workspaces button.active {
+  color: @drift_surface;
+  background: @drift_bone;
+  font-weight: 700;
+}
+
+#workspaces button.urgent {
+  color: @drift_bg;
+  background: @drift_err;
+  font-weight: 700;
+}
+
+#clock {
+  color: @drift_bone;
+  padding: 0 12px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+#custom-screenrecording-indicator,
+#custom-idle-indicator,
+#custom-notification-silencing-indicator {
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+  min-height: 22px;
+  color: transparent;
+  background: transparent;
+  border: none;
+}
+
+#custom-screenrecording-indicator.active {
+  min-width: 14px;
+  padding: 0 7px;
+  color: @drift_err_bright;
+  background: alpha(@drift_err, 0.12);
+  border-radius: 5px;
+}
+
+#custom-idle-indicator.active,
+#custom-notification-silencing-indicator.active {
+  min-width: 14px;
+  padding: 0 7px;
+  color: @drift_warn;
+  background: alpha(@drift_warn, 0.10);
+  border-radius: 5px;
+}
+
+#custom-update,
+#network,
+#pulseaudio,
+#battery {
+  color: @drift_soft;
+}
+
+#custom-update {
+  color: @drift_warn;
+  background: alpha(@drift_warn, 0.10);
+  border-radius: 5px;
+  margin: 4px 2px;
+  min-height: 14px;
+}
+
+#network.disconnected,
+#pulseaudio.muted {
+  color: @drift_err;
+}
+
+#battery.charging,
+#battery.plugged,
+#battery.full {
+  color: @drift_bone;
+}
+
+#battery.warning:not(.charging) {
+  color: @drift_warn;
+}
+
+#battery.critical:not(.charging) {
+  color: @drift_err_bright;
+  background: alpha(@drift_err, 0.12);
+  border-radius: 5px;
+  animation: drift-pulse 1.2s ease-in-out infinite alternate;
+}
+
+#custom-power {
+  min-width: 16px;
+  padding: 0 8px;
+  color: @drift_dim;
+  font-size: 13px;
+}
+
+#workspaces button:hover,
+#clock:hover,
+#network:hover,
+#pulseaudio:hover,
+#battery:hover,
+#custom-power:hover,
+#custom-update:hover {
+  color: @drift_bone;
+  background: @drift_sel;
+  border-radius: 5px;
+}
+
+#workspaces button.active:hover {
+  color: @drift_surface;
+  background: @drift_bone;
+}
+
+@keyframes drift-pulse {
+  to {
+    color: @drift_bg;
+    background: @drift_err_bright;
+  }
+}
+
+tooltip {
+  color: @drift_fg;
+  background: alpha(@drift_bg, 0.98);
+  border: 1px solid alpha(@drift_bone, 0.16);
+  border-radius: 8px;
+}
+
+tooltip label {
+  color: @drift_fg;
+  padding: 6px 8px;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 11px;
+}
