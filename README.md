@@ -5,7 +5,10 @@ with a complete *Mr. Robot* desktop treatment for Omarchy 4.
 
 ## Mr. Robot
 
-![Mr. Robot theme preview](mr_robot/backgrounds/01-fsociety-times-square.jpg)
+![Mr. Robot theme running on Omarchy](screenshots/mr-robot-desktop.png)
+
+*Live desktop preview showing the custom fsociety Waybar, workspace states,
+Pomodoro session, system telemetry, and glitch wallpaper.*
 
 The theme combines near-black terminal surfaces, fsociety red alerts,
 phosphor-green interaction states, cyan glitch accents, seven wallpapers, and
