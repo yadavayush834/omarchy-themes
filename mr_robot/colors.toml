@@ -1,0 +1,40 @@
+# Mr. Robot — Fsociety palette
+# Near-black terminal surfaces, phosphor green, signal red, and glitch cyan.
+mode = "dark"
+
+accent = "#e33b42"
+cursor = "#7dffa0"
+selection = "#193127"
+muted = "#6b7d74"
+
+background = "#080b0a"
+dark_background = "#050706"
+darker_background = "#020303"
+lighter_background = "#111815"
+
+foreground = "#c8d5cf"
+dark_foreground = "#6b7d74"
+light_foreground = "#a8bbb2"
+bright_foreground = "#d7ffe2"
+
+selection_foreground = "#ecf5f0"
+selection_background = "#193127"
+
+hyprland_active_border = "#e33b42 #4fd4d8 #59f085 35deg"
+hyprland_inactive_border = "rgba(33413aaa)"
+
+red = "#e33b42"
+yellow = "#d4c46e"
+orange = "#d87858"
+green = "#59f085"
+cyan = "#4fd4d8"
+blue = "#4a9fc3"
+magenta = "#ba6ca7"
+brown = "#75483d"
+
+bright_red = "#ff5961"
+bright_yellow = "#f2dc83"
+bright_green = "#7dffa0"
+bright_cyan = "#72f1f0"
+bright_blue = "#72c8e8"
+bright_magenta = "#dc8fc8"

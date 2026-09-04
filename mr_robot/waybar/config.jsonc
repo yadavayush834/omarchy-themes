@@ -1,0 +1,252 @@
+{
+  "name": "mr-robot",
+  "layer": "top",
+  "position": "top",
+  "mode": "dock",
+  "exclusive": true,
+  "passthrough": false,
+  "fixed-center": true,
+  "reload_style_on_change": true,
+  "height": 38,
+  "spacing": 0,
+  "margin-top": 6,
+  "margin-left": 8,
+  "margin-right": 8,
+
+  "modules-left": [
+    "custom/omarchy",
+    "custom/fsociety",
+    "hyprland/workspaces",
+    "hyprland/window"
+  ],
+  "modules-center": [
+    "custom/screenrecording-indicator",
+    "custom/pomodoro",
+    "clock",
+    "custom/idle-indicator",
+    "custom/notification-silencing-indicator"
+  ],
+  "modules-right": [
+    "tray",
+    "custom/update",
+    "custom/uptime",
+    "cpu",
+    "memory",
+    "temperature",
+    "network",
+    "bluetooth",
+    "pulseaudio",
+    "backlight",
+    "battery",
+    "custom/power"
+  ],
+
+  "custom/omarchy": {
+    "format": "<span font='omarchy'>\ue900</span>",
+    "on-click": "omarchy menu toggle",
+    "on-click-right": "xdg-terminal-exec",
+    "tooltip-format": "ACCESS OMARCHY // Super + Alt + Space"
+  },
+
+  "custom/fsociety": {
+    "format": "F_SOCIETY // ROOT",
+    "on-click": "xdg-terminal-exec",
+    "tooltip-format": "Hello, friend.\nOpen terminal"
+  },
+
+  "hyprland/workspaces": {
+    "active-only": false,
+    "all-outputs": false,
+    "disable-scroll": false,
+    "sort-by-number": true,
+    "on-click": "activate",
+    "format": "{icon}",
+    "format-icons": {
+      "1": "01",
+      "2": "02",
+      "3": "03",
+      "4": "04",
+      "5": "05",
+      "6": "06",
+      "7": "07",
+      "8": "08",
+      "9": "09",
+      "10": "00",
+      "default": "--",
+      "urgent": "!!"
+    },
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": []
+    }
+  },
+
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 42,
+    "separate-outputs": true,
+    "rewrite": {
+      "": "SYSTEM.IDLE",
+      "(.*) — Mozilla Firefox": "$1",
+      "(.*) - Chromium": "$1",
+      "(.*) - Visual Studio Code": "$1 // CODE"
+    }
+  },
+
+  "custom/pomodoro": {
+    "exec": "$HOME/.config/waybar/scripts/pomodoro.sh status",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "$HOME/.config/waybar/scripts/pomodoro.sh toggle",
+    "on-click-right": "$HOME/.config/waybar/scripts/pomodoro.sh reset",
+    "tooltip": true
+  },
+
+  "clock": {
+    "interval": 1,
+    "format": "SYS.TIME // {:%H:%M:%S}",
+    "format-alt": "SYS.DATE // {:%Y-%m-%d // %A}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "on-click": "omarchy-shell shell toggle omarchy.clock",
+    "calendar": {
+      "mode": "month",
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<b>{}</b>",
+        "days": "{}",
+        "weeks": "W{}",
+        "weekdays": "<b>{}</b>",
+        "today": "<b><u>{}</u></b>"
+      }
+    }
+  },
+
+  "custom/screenrecording-indicator": {
+    "on-click": "omarchy capture screenrecording",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/screen-recording.sh",
+    "signal": 8,
+    "return-type": "json"
+  },
+
+  "custom/idle-indicator": {
+    "on-click": "omarchy toggle idle",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/idle.sh",
+    "signal": 9,
+    "return-type": "json"
+  },
+
+  "custom/notification-silencing-indicator": {
+    "on-click": "omarchy toggle notification silencing",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/notification-silencing.sh",
+    "signal": 10,
+    "return-type": "json"
+  },
+
+  "custom/update": {
+    "format": "UPD",
+    "exec-if": "omarchy-update-available",
+    "exec": "printf 'UPD'",
+    "interval": 21600,
+    "signal": 7,
+    "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
+    "tooltip-format": "OMARCHY UPDATE AVAILABLE"
+  },
+
+  "custom/uptime": {
+    "exec": "$HOME/.config/waybar/scripts/uptime.sh",
+    "interval": 60,
+    "tooltip-format": "SYSTEM UPTIME"
+  },
+
+  "cpu": {
+    "interval": 3,
+    "format": "CPU {usage:02}%",
+    "tooltip-format": "CPU load: {load}\nFrequency: {avg_frequency} GHz",
+    "on-click": "omarchy-launch-or-focus-tui btop"
+  },
+
+  "memory": {
+    "interval": 3,
+    "format": "MEM {percentage:02}%",
+    "tooltip-format": "Memory: {used:0.1f} GiB / {total:0.1f} GiB",
+    "on-click": "omarchy-launch-or-focus-tui btop"
+  },
+
+  "temperature": {
+    "interval": 5,
+    "critical-threshold": 80,
+    "format": "TMP {temperatureC:02}°",
+    "format-critical": "TMP {temperatureC:02}°!",
+    "tooltip": true,
+    "on-click": "omarchy-launch-or-focus-tui btop"
+  },
+
+  "tray": {
+    "icon-size": 13,
+    "spacing": 7,
+    "reverse-direction": true
+  },
+
+  "network": {
+    "interval": 3,
+    "format-wifi": "NET {signalStrength:02}%",
+    "format-ethernet": "NET ETH",
+    "format-linked": "NET LINK",
+    "format-disconnected": "NET OFF",
+    "tooltip-format-wifi": "{essid}\n{ipaddr}\nDown {bandwidthDownBytes}  Up {bandwidthUpBytes}",
+    "tooltip-format-ethernet": "Ethernet {ipaddr}\nDown {bandwidthDownBytes}  Up {bandwidthUpBytes}",
+    "tooltip-format-disconnected": "NETWORK DISCONNECTED",
+    "on-click": "omarchy-shell shell toggle omarchy.network"
+  },
+
+  "bluetooth": {
+    "format": "BT",
+    "format-off": "BT OFF",
+    "format-disabled": "BT OFF",
+    "format-connected": "BT {num_connections}",
+    "format-no-controller": "",
+    "tooltip-format": "BLUETOOTH // {status}\nConnected: {num_connections}",
+    "on-click": "omarchy-shell shell toggle omarchy.bluetooth",
+    "on-click-right": "omarchy-shell omarchy.bluetooth toggleBluetooth"
+  },
+
+  "pulseaudio": {
+    "scroll-step": 5,
+    "format": "VOL {volume:02}%",
+    "format-muted": "VOL MUT",
+    "tooltip-format": "OUTPUT // {desc}\nVolume: {volume}%",
+    "on-click": "omarchy-shell shell toggle omarchy.audio",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+  },
+
+  "backlight": {
+    "format": "LUX {percent:02}%",
+    "tooltip-format": "DISPLAY BRIGHTNESS // {percent}%",
+    "on-click": "omarchy-shell shell toggle omarchy.monitor"
+  },
+
+  "battery": {
+    "interval": 5,
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
+    "format": "PWR {capacity:02}%",
+    "format-charging": "CHG {capacity:02}%",
+    "format-plugged": "AC {capacity:02}%",
+    "format-full": "AC FULL",
+    "tooltip-format": "BATTERY // {timeTo}\nDraw: {power:.1f} W",
+    "on-click": "omarchy-shell shell toggle omarchy.power",
+    "on-click-right": "omarchy-shell omarchy.power togglePercentage"
+  },
+
+  "custom/power": {
+    "format": "⏻",
+    "on-click": "omarchy-shell shell toggle omarchy.power",
+    "tooltip-format": "POWER CONTROL // Super + Ctrl + P"
+  }
+}

@@ -1,0 +1,305 @@
+@import "../../.local/state/omarchy/current/theme/waybar.css";
+
+@define-color terminal #050706;
+@define-color terminal_alt #0b100e;
+@define-color panel #111815;
+@define-color selection #193127;
+@define-color muted #6b7d74;
+@define-color red #e33b42;
+@define-color red_bright #ff5961;
+@define-color green #59f085;
+@define-color green_bright #7dffa0;
+@define-color cyan #4fd4d8;
+@define-color cyan_bright #72f1f0;
+@define-color amber #d4c46e;
+
+* {
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 11px;
+  font-weight: 600;
+}
+
+window#waybar {
+  background: transparent;
+  color: @foreground;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+  background-color: alpha(@terminal, 0.96);
+  border: 1px solid alpha(@muted, 0.48);
+  box-shadow: 0 3px 12px alpha(#000000, 0.72);
+}
+
+.modules-left {
+  border-left: 2px solid @red;
+}
+
+.modules-center {
+  border-top: 1px solid @cyan;
+  border-bottom: 1px solid alpha(@green, 0.70);
+}
+
+.modules-right {
+  border-right: 2px solid @green;
+}
+
+#custom-omarchy,
+#custom-fsociety,
+#workspaces,
+#window,
+#custom-pomodoro,
+#clock,
+#tray,
+#custom-update,
+#custom-uptime,
+#cpu,
+#memory,
+#temperature,
+#network,
+#bluetooth,
+#pulseaudio,
+#backlight,
+#battery,
+#custom-power {
+  padding: 0 8px;
+  min-height: 30px;
+}
+
+#custom-omarchy {
+  min-width: 18px;
+  padding: 0 7px;
+  color: @red_bright;
+  background: @terminal;
+  font-size: 14px;
+  border-right: 1px solid alpha(@red, 0.55);
+}
+
+#custom-fsociety {
+  color: @red_bright;
+  background: alpha(@red, 0.10);
+  border-right: 1px solid alpha(@red, 0.42);
+  letter-spacing: 1px;
+  animation: fsociety-glitch 4s steps(2) infinite alternate;
+}
+
+@keyframes fsociety-glitch {
+  from {
+    color: @red_bright;
+    text-shadow: 1px 0 @cyan;
+  }
+  96% {
+    color: @red_bright;
+    text-shadow: 1px 0 @cyan;
+  }
+  to {
+    color: @cyan_bright;
+    text-shadow: -1px 0 @red;
+  }
+}
+
+#workspaces {
+  padding: 0 3px;
+  background: @terminal_alt;
+  border-right: 1px solid alpha(@muted, 0.36);
+}
+
+#workspaces button {
+  all: initial;
+  min-width: 18px;
+  min-height: 30px;
+  padding: 0 5px;
+  color: alpha(@foreground, 0.48);
+  background: transparent;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 10px;
+  font-weight: 700;
+  transition: all 120ms steps(2);
+}
+
+#workspaces button.empty {
+  color: alpha(@muted, 0.72);
+}
+
+#workspaces button.visible {
+  color: @cyan_bright;
+  box-shadow: inset 0 -1px @cyan;
+}
+
+#workspaces button.active {
+  color: @green_bright;
+  background: alpha(@green, 0.09);
+  box-shadow: inset 0 -2px @red;
+  text-shadow: 0 0 5px alpha(@green, 0.50);
+}
+
+#workspaces button.urgent {
+  color: @terminal;
+  background: @red_bright;
+  animation: alert-blink 650ms steps(2) infinite alternate;
+}
+
+#window {
+  min-width: 100px;
+  color: alpha(@foreground, 0.68);
+  font-size: 10px;
+}
+
+window#waybar.empty #window {
+  color: @muted;
+}
+
+#clock {
+  color: @green_bright;
+  padding: 0 12px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 5px alpha(@green, 0.42);
+}
+
+#custom-pomodoro {
+  color: @cyan_bright;
+  border-right: 1px solid alpha(@cyan, 0.35);
+}
+
+#custom-pomodoro.active {
+  color: @green_bright;
+  background: alpha(@green, 0.08);
+}
+
+#custom-pomodoro.paused {
+  color: @amber;
+}
+
+#custom-screenrecording-indicator,
+#custom-idle-indicator,
+#custom-notification-silencing-indicator {
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+  color: transparent;
+}
+
+#custom-screenrecording-indicator.active,
+#custom-idle-indicator.active,
+#custom-notification-silencing-indicator.active {
+  min-width: 17px;
+  padding: 0 6px;
+  color: @red_bright;
+  background: alpha(@red, 0.12);
+}
+
+#custom-screenrecording-indicator.active {
+  animation: alert-blink 650ms steps(2) infinite alternate;
+}
+
+#tray,
+#custom-update,
+#custom-uptime,
+#cpu,
+#memory,
+#temperature,
+#network,
+#bluetooth,
+#pulseaudio,
+#backlight,
+#battery {
+  color: @foreground;
+  border-right: 1px solid alpha(@muted, 0.27);
+  transition: all 120ms steps(2);
+}
+
+#custom-uptime,
+#cpu,
+#memory,
+#temperature {
+  font-size: 10px;
+  color: alpha(@foreground, 0.76);
+}
+
+#custom-update {
+  color: @red_bright;
+  background: alpha(@red, 0.12);
+  animation: alert-blink 900ms steps(2) infinite alternate;
+}
+
+#network.disconnected,
+#pulseaudio.muted,
+#bluetooth.off,
+#bluetooth.disabled {
+  color: @red_bright;
+}
+
+#battery.charging,
+#battery.plugged,
+#battery.full {
+  color: @green_bright;
+}
+
+#battery.warning:not(.charging) {
+  color: @amber;
+}
+
+#battery.critical:not(.charging) {
+  color: @red_bright;
+  animation: alert-blink 500ms steps(2) infinite alternate;
+}
+
+#temperature.critical {
+  color: @red_bright;
+}
+
+#custom-power {
+  min-width: 20px;
+  padding: 0 7px;
+  color: @red_bright;
+  font-size: 15px;
+}
+
+#custom-omarchy:hover,
+#custom-fsociety:hover,
+#workspaces button:hover,
+#window:hover,
+#custom-pomodoro:hover,
+#clock:hover,
+#tray:hover,
+#custom-update:hover,
+#custom-uptime:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#network:hover,
+#bluetooth:hover,
+#pulseaudio:hover,
+#backlight:hover,
+#battery:hover,
+#custom-power:hover {
+  color: @green_bright;
+  background: @selection;
+  box-shadow: inset 0 -2px @cyan;
+}
+
+@keyframes alert-blink {
+  to {
+    color: @terminal;
+    background: @red_bright;
+    text-shadow: none;
+  }
+}
+
+tooltip {
+  color: @foreground;
+  background: alpha(@terminal_alt, 0.98);
+  border: 1px solid @cyan;
+  box-shadow: 0 4px 16px alpha(#000000, 0.80);
+}
+
+tooltip label {
+  color: @foreground;
+  padding: 6px 8px;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 11px;
+}
