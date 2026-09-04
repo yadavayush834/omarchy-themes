@@ -6,7 +6,7 @@ complete *Mr. Robot* desktop treatment and an original minimalist theme,
 
 ## Minimal Drift
 
-![Minimal Drift theme running on Omarchy](screenshots/minimal-drift-desktop.png)
+![Minimal Drift theme running on Omarchy](screenshots/minimal-drift-desktop-v2.png)
 
 *Live desktop preview showing the floating-pill Waybar, bone active
 workspace, and warm-monochrome terminal palette.*

@@ -5,7 +5,7 @@ Quiet paper in a dark room. A warm-monochrome minimalist Omarchy theme.
 One bone accent (`#E8E4DA`), one sand warning (`#C9A86A`), muted clay for
 errors. Everything else stays in warm grays so focused work stays calm.
 
-![Minimal Drift desktop](../../screenshots/minimal-drift-desktop.png)
+![Minimal Drift desktop](../../screenshots/minimal-drift-desktop-v2.png)
 
 - **Omarchy slug:** `minimal-drift`
 - **Repository folder:** `minimal_drift`
