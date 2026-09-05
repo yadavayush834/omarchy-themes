@@ -20,9 +20,14 @@ case "${theme_slug}" in
     theme_label="Minimal Drift"
     theme_greeting="Minimal Drift is installed and active. Breathe easy."
     ;;
+  blue-lock)
+    theme_directory="blue_lock"
+    theme_label="Blue Lock"
+    theme_greeting="Blue Lock is installed and active. Lock in."
+    ;;
   *)
-    printf 'Error: unknown theme "%s". Available themes: mr-robot, minimal-drift.\n' "${theme_slug}" >&2
-    printf 'Usage: ./install.sh [mr-robot|minimal-drift]\n' >&2
+    printf 'Error: unknown theme "%s". Available themes: mr-robot, minimal-drift, blue-lock.\n' "${theme_slug}" >&2
+    printf 'Usage: ./install.sh [mr-robot|minimal-drift|blue-lock]\n' >&2
     exit 1
     ;;
 esac

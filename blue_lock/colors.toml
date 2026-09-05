@@ -1,0 +1,40 @@
+# Blue Lock — Spatial Awareness palette
+# Midnight analysis-room surfaces, electric flow blue, cyan vision, and pitch green.
+mode = "dark"
+
+accent = "#2f6bff"
+cursor = "#67e8ff"
+selection = "#102b5c"
+muted = "#687da8"
+
+background = "#060a18"
+dark_background = "#030611"
+darker_background = "#01030a"
+lighter_background = "#0c1430"
+
+foreground = "#dbe9ff"
+dark_foreground = "#687da8"
+light_foreground = "#a9c8f5"
+bright_foreground = "#f7fbff"
+
+selection_foreground = "#f7fbff"
+selection_background = "#143b7a"
+
+hyprland_active_border = "#2f6bff #26d9ff #765cff 35deg"
+hyprland_inactive_border = "rgba(263354aa)"
+
+red = "#ff4d6d"
+yellow = "#ffd166"
+orange = "#ff8c42"
+green = "#45e6a3"
+cyan = "#26d9ff"
+blue = "#2f6bff"
+magenta = "#a56eff"
+brown = "#9a6b5a"
+
+bright_red = "#ff7690"
+bright_yellow = "#ffe08a"
+bright_green = "#73f3bd"
+bright_cyan = "#67e8ff"
+bright_blue = "#6d9cff"
+bright_magenta = "#c39aff"

@@ -1,0 +1,203 @@
+{
+  "name": "blue-lock",
+  "layer": "top",
+  "position": "top",
+  "mode": "dock",
+  "exclusive": true,
+  "passthrough": false,
+  "fixed-center": true,
+  "reload_style_on_change": true,
+  "height": 40,
+  "spacing": 0,
+
+  "modules-left": [
+    "custom/omarchy",
+    "hyprland/workspaces",
+    "hyprland/window"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "custom/screenrecording-indicator",
+    "custom/idle-indicator",
+    "custom/notification-silencing-indicator",
+    "custom/update",
+    "cpu",
+    "network",
+    "bluetooth",
+    "pulseaudio",
+    "battery",
+    "custom/power"
+  ],
+
+  "custom/omarchy": {
+    "format": "<span font='omarchy'>\ue900</span>",
+    "on-click": "omarchy menu toggle",
+    "on-click-right": "xdg-terminal-exec",
+    "tooltip-format": "Open Omarchy menu"
+  },
+
+  "hyprland/workspaces": {
+    "active-only": false,
+    "all-outputs": false,
+    "disable-scroll": false,
+    "sort-by-number": true,
+    "on-click": "activate",
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "0",
+      "default": "·",
+      "urgent": "!"
+    },
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": []
+    }
+  },
+
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 36,
+    "separate-outputs": true,
+    "rewrite": {
+      "": "",
+      "(.*) — Mozilla Firefox": "$1",
+      "(.*) - Chromium": "$1",
+      "(.*) - Visual Studio Code": "$1"
+    }
+  },
+
+  "clock": {
+    "interval": 60,
+    "format": "{:%H:%M}",
+    "format-alt": "{:%a, %d %b}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "on-click": "omarchy-shell shell toggle omarchy.clock",
+    "calendar": {
+      "mode": "month",
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<b>{}</b>",
+        "days": "{}",
+        "weeks": "W{}",
+        "weekdays": "<b>{}</b>",
+        "today": "<b><u>{}</u></b>"
+      }
+    }
+  },
+
+  "custom/screenrecording-indicator": {
+    "on-click": "omarchy capture screenrecording",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/screen-recording.sh",
+    "signal": 8,
+    "return-type": "json"
+  },
+
+  "custom/idle-indicator": {
+    "on-click": "omarchy toggle idle",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/idle.sh",
+    "signal": 9,
+    "return-type": "json"
+  },
+
+  "custom/notification-silencing-indicator": {
+    "on-click": "omarchy toggle notification silencing",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/notification-silencing.sh",
+    "signal": 10,
+    "return-type": "json"
+  },
+
+  "custom/update": {
+    "format": "󰚰",
+    "exec-if": "omarchy-update-available",
+    "exec": "printf 'update available'",
+    "interval": 21600,
+    "signal": 7,
+    "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
+    "tooltip-format": "Omarchy update available"
+  },
+
+  "cpu": {
+    "interval": 5,
+    "format": "󰍛 {usage}%",
+    "states": {
+      "warning": 75,
+      "critical": 90
+    },
+    "tooltip-format": "CPU: {usage}%\nLoad: {load}\nAverage frequency: {avg_frequency} GHz",
+    "on-click": "omarchy-launch-or-focus-tui btop"
+  },
+
+  "network": {
+    "interval": 5,
+    "format-wifi": "󰖩 {signalStrength}%",
+    "format-ethernet": "󰈀",
+    "format-linked": "󰈀",
+    "format-disconnected": "󰖪",
+    "tooltip-format-wifi": "{essid}\n{ipaddr}\nDown {bandwidthDownBytes}  Up {bandwidthUpBytes}",
+    "tooltip-format-ethernet": "Ethernet · {ipaddr}\nDown {bandwidthDownBytes}  Up {bandwidthUpBytes}",
+    "tooltip-format-disconnected": "Network disconnected",
+    "on-click": "omarchy-shell shell toggle omarchy.network"
+  },
+
+  "bluetooth": {
+    "format": "󰂯",
+    "format-off": "",
+    "format-disabled": "",
+    "format-connected": "󰂱 {num_connections}",
+    "format-no-controller": "",
+    "tooltip-format": "Bluetooth: {status}\nConnected devices: {num_connections}",
+    "on-click": "omarchy-shell shell toggle omarchy.bluetooth",
+    "on-click-right": "omarchy-shell omarchy.bluetooth toggleBluetooth"
+  },
+
+  "pulseaudio": {
+    "scroll-step": 5,
+    "format": "{icon} {volume}%",
+    "format-muted": "󰖁",
+    "format-icons": {
+      "headphone": "󰋋",
+      "headset": "󰋎",
+      "default": ["󰕿", "󰖀", "󰕾"]
+    },
+    "tooltip-format": "{desc}\nVolume: {volume}%",
+    "on-click": "omarchy-shell shell toggle omarchy.audio",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+  },
+
+  "battery": {
+    "interval": 10,
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": "󰚥 {capacity}%",
+    "format-full": "󰁹",
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "tooltip-format": "Battery: {capacity}% · {timeTo}\nPower draw: {power:.1f} W",
+    "on-click": "omarchy-shell shell toggle omarchy.power",
+    "on-click-right": "omarchy-shell omarchy.power togglePercentage"
+  },
+
+  "custom/power": {
+    "format": "⏻",
+    "on-click": "omarchy-shell shell toggle omarchy.power",
+    "tooltip-format": "Power menu"
+  }
+}

@@ -1,8 +1,20 @@
 # Omarchy Themes
 
-A collection of fan-made themes for [Omarchy](https://omarchy.org/): a
-complete *Mr. Robot* desktop treatment and an original minimalist theme,
-*Minimal Drift*, both for Omarchy 4.
+A collection of complete themes for [Omarchy](https://omarchy.org/), including
+*Blue Lock*, *Mr. Robot*, and the original minimalist theme *Minimal Drift*.
+All themes target Omarchy 4.
+
+## Blue Lock
+
+![Blue Lock theme running on Omarchy](screenshots/blue-lock-desktop.png)
+
+*Live desktop preview showing the restrained navy Waybar, numbered workspaces,
+centered clock, compact system status, and stadium wallpaper.*
+
+A dark football-inspired theme built around deep navy surfaces, electric-blue
+active states, soft cyan details, and a clean full-width Waybar. It includes
+three 1920px wallpapers and complete native-shell styling. Install with
+`./install.sh blue-lock`; details are in [blue_lock/](blue_lock/).
 
 ## Minimal Drift
 
@@ -32,12 +44,13 @@ a custom telemetry-heavy Waybar.
 ### Quick installation
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/yadavayush834/omarchy-themes/main/install.sh) minimal-drift
+bash <(curl -fsSL https://raw.githubusercontent.com/yadavayush834/omarchy-themes/main/install.sh) blue-lock
 ```
 
 Or pick a theme explicitly (defaults to `mr-robot` when omitted):
 
 ```bash
+./install.sh blue-lock
 ./install.sh minimal-drift
 ./install.sh mr-robot
 ```
@@ -45,7 +58,8 @@ Or pick a theme explicitly (defaults to `mr-robot` when omitted):
 The installer:
 
 - downloads this repository when needed;
-- validates the theme name against a fixed list (`mr-robot`, `minimal-drift`);
+- validates the theme name against a fixed list (`blue-lock`, `mr-robot`,
+  `minimal-drift`);
 - backs up an existing theme instead of deleting it;
 - installs the theme folder as `~/.config/omarchy/themes/<slug>`;
 - applies the theme with Omarchy.
@@ -55,7 +69,7 @@ If you prefer to inspect everything first:
 ```bash
 git clone --depth 1 https://github.com/yadavayush834/omarchy-themes.git
 cd omarchy-themes
-./install.sh minimal-drift
+./install.sh blue-lock
 ```
 
 Cycle wallpapers after installation with:
@@ -66,10 +80,10 @@ omarchy theme bg next
 
 ### Waybar compatibility
 
-The `mr_robot/waybar/` directory contains the complete fsociety Waybar layout,
-CSS, uptime module, and self-contained Pomodoro timer. A compatible Waybar
-theme manager can activate it automatically; standard Omarchy installations
-still receive the complete native-shell styling and color palette.
+Each theme can bundle a complete layout under its own `waybar/` directory. A
+compatible Waybar theme manager can activate it automatically; standard
+Omarchy installations still receive the complete native-shell styling and
+color palette.
 
 ## Repository layout
 
@@ -78,8 +92,14 @@ omarchy-themes/
 ├── install.sh
 ├── README.md
 ├── screenshots/
-│   ├── minimal-drift-desktop.png
+│   ├── blue-lock-desktop.png
+│   ├── minimal-drift-desktop-v2.png
 │   └── mr-robot-desktop.png
+├── blue_lock/            # slug: blue-lock
+│   ├── backgrounds/
+│   ├── colors.toml
+│   ├── shell.*.toml
+│   └── waybar/
 ├── minimal_drift/        # slug: minimal-drift
 │   ├── backgrounds/
 │   ├── colors.toml
@@ -95,7 +115,8 @@ omarchy-themes/
 ## Disclaimer
 
 This is an unofficial fan project and is not affiliated with or endorsed by
-Omarchy or the creators, producers, broadcasters, or rights holders of
-*Mr. Robot*. Supplied images remain the property of their respective copyright
-holders. *Minimal Drift* is an original creation; its wallpapers were
-generated for this theme and need no attribution.
+Omarchy or the creators, producers, publishers, studios, broadcasters, or
+rights holders of *Blue Lock* or *Mr. Robot*. Supplied fan-theme images remain
+the property of their respective copyright holders. *Minimal Drift* is an
+original creation; its wallpapers were generated for this theme and need no
+attribution.
