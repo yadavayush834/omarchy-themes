@@ -91,11 +91,12 @@ available from Omarchy or your user theme directory, continues past unavailable
 repositories, prints a final summary, and restores the theme that was active
 before the batch. Preview what it would add with `./install-catalog.sh --dry-run`.
 
-## Todo + Pomodoro top bar
+## Productivity + background-app top bar
 
 The `shell/` directory contains native Omarchy Shell widgets for a persistent
-todo list and Pomodoro timer. They are added to the standard top bar without
-replacing its other widgets:
+todo list, Pomodoro timer, and a background-app memory monitor with per-app
+kill controls. They are added to the standard top bar without replacing its
+other widgets:
 
 ```bash
 ./shell/install.sh
