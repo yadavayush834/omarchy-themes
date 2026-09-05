@@ -78,6 +78,31 @@ Cycle wallpapers after installation with:
 omarchy theme bg next
 ```
 
+### Install the community catalog
+
+Install every missing theme listed on [omarchythemes.com](https://omarchythemes.com/):
+
+```bash
+./install-catalog.sh
+```
+
+The catalog installer is resumable and idempotent. It skips themes already
+available from Omarchy or your user theme directory, continues past unavailable
+repositories, prints a final summary, and restores the theme that was active
+before the batch. Preview what it would add with `./install-catalog.sh --dry-run`.
+
+## Todo + Pomodoro top bar
+
+The `shell/` directory contains native Omarchy Shell widgets for a persistent
+todo list and Pomodoro timer. They are added to the standard top bar without
+replacing its other widgets:
+
+```bash
+./shell/install.sh
+```
+
+See [shell/README.md](shell/README.md) for behavior and state locations.
+
 ### Waybar compatibility
 
 Each theme can bundle a complete layout under its own `waybar/` directory. A
@@ -90,7 +115,9 @@ color palette.
 ```text
 omarchy-themes/
 ├── install.sh
+├── install-catalog.sh
 ├── README.md
+├── shell/                # Todo + Pomodoro top-bar widgets
 ├── screenshots/
 │   ├── blue-lock-desktop.png
 │   ├── minimal-drift-desktop-v2.png
