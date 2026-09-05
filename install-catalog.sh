@@ -58,7 +58,11 @@ while IFS= read -r slug; do
   # Built-in and conventionally named user themes need no detail-page lookup.
   # This also avoids treating official catalog cards (which have no repository
   # button) as failures.
-  if [[ -d "${themes_root}/${slug}" || -d "${stock_root}/${slug}" ]]; then
+  availability_slug="${slug}"
+  case "${slug}" in
+    synthwave-84) availability_slug="synthwave84" ;;
+  esac
+  if [[ -d "${themes_root}/${availability_slug}" || -d "${stock_root}/${availability_slug}" ]]; then
     printf '[%d/%d] %-28s skipped (already available)\n' "${processed}" "${catalog_count}" "${slug}"
     skipped=$((skipped + 1))
     continue
@@ -71,7 +75,14 @@ while IFS= read -r slug; do
     continue
   fi
 
-  repo_url="$(sed -nE 's#.*href="(https://github\.com/[^"?#]+)".*#\1#p' "${detail_page}" | head -n 1)"
+  repo_url="$(sed -nE 's#.*href="(https://github\.com/[^"]+)".*#\1#p' "${detail_page}" | head -n 1)"
+  repo_url="${repo_url%%\?*}"
+  repo_url="${repo_url%%#*}"
+  # A small number of older cards lost their repository button even though
+  # the original public repository remains available.
+  if [[ -z "${repo_url}" && "${slug}" == "grimdark-solarized" ]]; then
+    repo_url="https://github.com/OldJobobo/omarchy-grimdark-solarized-theme"
+  fi
   if [[ -z "${repo_url}" ]]; then
     printf '[%d/%d] %-28s FAILED (repository missing)\n' "${processed}" "${catalog_count}" "${slug}"
     printf '%s\trepository missing\n' "${slug}" >> "${failures_file}"
